@@ -1,8 +1,10 @@
 import { message } from "antd";
 import axios from "axios";
 
+export const BASE_URL = '/api'
+
 const service = axios.create({
-  baseURL: "/explorer",
+  baseURL: BASE_URL,
   timeout: 10000,
   // withCredentials: true,
 });

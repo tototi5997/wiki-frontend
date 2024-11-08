@@ -1,4 +1,5 @@
 import { HashRouter, BrowserRouter, RouteObject, Navigate } from "react-router-dom";
+import Login from "./pages/login";
 import Home from "./pages/home";
 import NotFoundPage from "./pages/404";
 
@@ -17,7 +18,11 @@ export const RouterComponent = routerMap[ROUTER_TYPE];
 
 // 路由配置
 export const routerConfig: RouteObject[] = [
-  { path: "/", element: <Navigate to="/home" replace /> },
+  { path: "/", element: <Navigate to="/login" replace /> },
+  {
+    path: "/login",
+    element: <Login />,
+  },
   {
     path: "/home",
     element: <Home />,

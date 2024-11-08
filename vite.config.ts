@@ -15,6 +15,13 @@ export default defineConfig({
   server: {
     host: "0.0.0.0",
     open: true,
+    proxy: {
+      '/api': {
+        target: 'http://121.37.180.58:3000',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, '')
+      },
+    }
   },
   plugins: [
     react(),
