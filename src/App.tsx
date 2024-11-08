@@ -3,6 +3,7 @@ import { routerConfig } from "./router";
 import ModalRoot, { ModalContext } from "./modals/ModalRoot";
 import useInitModal from "./hooks/useInitModal";
 import { useInitGlobalRouter } from "./hooks/useGlobalRouter";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 const App = () => {
   // Global Router used in axios interceptors
@@ -15,8 +16,10 @@ const App = () => {
 
   return (
     <ModalContext.Provider value={globalModal}>
-      <ModalRoot ref={modalRef} />
-      {element}
+      <ProtectedRoute>
+        <ModalRoot ref={modalRef} />
+        {element}
+      </ProtectedRoute>
     </ModalContext.Provider>
   );
 };
