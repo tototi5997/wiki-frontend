@@ -1,11 +1,13 @@
 import c from "classnames";
 import s from "./index.module.less";
+import { Header } from "@/layout";
 
 const Home = () => {
   return (
-    <div className={c(s.home, "relative fbv fbac fbjc")}>
-      <p className="text-[30px] font-[600]">ZLI TEMPLATE</p>
-      <div className="mt-20">Create by React + Vite + Tailwind</div>
+    <div className={c(s.home, "relative fbh fbjc fbac")}>
+      <Header />
+
+      <div className={c(s.content)}></div>
     </div>
   );
 };

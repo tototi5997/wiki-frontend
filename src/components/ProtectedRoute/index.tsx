@@ -13,16 +13,18 @@ const ProtectedRoute: React.FC<IProtectRoute> = ({ children }) => {
   const noProtectList = ["/login", "/register"];
   const whiteList = ["/temp"];
 
+  console.log(Cookie.get());
+
   useEffect(() => {
     const inWhiteList = noProtectList.some((path) => pathname.includes(path)) || whiteList.includes(pathname) || pathname === "/";
-    const isAuthenticated = !!Cookie.get("token") || !!Cookie.get("refresh_token");
+    const isAuthenticated = !!Cookie.get("token");
 
     if (!isAuthenticated && !inWhiteList) {
       navigate("/login");
     }
 
     if (isAuthenticated && pathname === "/login") {
-      navigate("/portal");
+      navigate("/home");
     }
   }, [pathname]);
 

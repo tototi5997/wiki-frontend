@@ -1,7 +1,9 @@
+import { globalRouter } from "@/hooks/useGlobalRouter";
 import { message } from "antd";
 import axios from "axios";
+import Cookies from "js-cookie";
 
-export const BASE_URL = '/api'
+export const BASE_URL = "/api";
 
 const service = axios.create({
   baseURL: BASE_URL,
@@ -28,6 +30,11 @@ service.interceptors.response.use(
     // 提取错误信息
     const errorMessage = error.response?.data?.message || error.message || "请求失败";
     message.error(errorMessage);
+
+    if (error.response?.status === 401) {
+      Cookies.remove("token");
+      globalRouter.navigate?.("/login");
+    }
 
     return Promise.reject(error);
   }
