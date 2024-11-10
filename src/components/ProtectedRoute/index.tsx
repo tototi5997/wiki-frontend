@@ -13,8 +13,6 @@ const ProtectedRoute: React.FC<IProtectRoute> = ({ children }) => {
   const noProtectList = ["/login", "/register"];
   const whiteList = ["/temp"];
 
-  console.log(Cookie.get());
-
   useEffect(() => {
     const inWhiteList = noProtectList.some((path) => pathname.includes(path)) || whiteList.includes(pathname) || pathname === "/";
     const isAuthenticated = !!Cookie.get("token");

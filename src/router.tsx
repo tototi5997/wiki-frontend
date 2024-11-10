@@ -2,6 +2,7 @@ import { HashRouter, BrowserRouter, RouteObject, Navigate } from "react-router-d
 import Login from "./pages/login";
 import Home from "./pages/home";
 import NotFoundPage from "./pages/404";
+import SearchPage from "./pages/search-page";
 
 export type RouterType = "hash" | "browser";
 
@@ -26,6 +27,28 @@ export const routerConfig: RouteObject[] = [
   {
     path: "/home",
     element: <Home />,
+    children: [
+      {
+        path: "/home",
+        element: <Navigate to="/home/index" replace />,
+      },
+      {
+        path: "/home/index",
+        element: <SearchPage />,
+      },
+      {
+        path: "/home/messionHall",
+        element: <div>任务大厅</div>,
+      },
+      {
+        path: "/home/my",
+        element: <div>我的</div>,
+      },
+      {
+        path: "/home/admin",
+        element: <div>管理</div>,
+      },
+    ],
   },
   // 404 放在最下面
   {
