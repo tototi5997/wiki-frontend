@@ -15,6 +15,7 @@ export const useAuthority = () => {
   // 退出登录
   const userLogout = useMutation({
     mutationFn: logout,
+    onSuccess: () => navigate("/login"),
   });
   // 注册
   const userRegister = useMutation({
