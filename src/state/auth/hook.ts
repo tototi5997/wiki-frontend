@@ -15,6 +15,7 @@ export const useAuthority = () => {
 
   const userLogout = useMutation({
     mutationFn: logout,
+    onSuccess: () => navigate("/login"),
   });
 
   return { isAuthorize, userLogin, userLogout };
