@@ -1,5 +1,6 @@
 import { HashRouter, BrowserRouter, RouteObject, Navigate } from "react-router-dom";
 import Login from "./pages/login";
+import Register from "./pages/register";
 import Home from "./pages/home";
 import NotFoundPage from "./pages/404";
 import SearchPage from "./pages/search-page";
@@ -23,6 +24,10 @@ export const routerConfig: RouteObject[] = [
   {
     path: "/login",
     element: <Login />,
+  },
+  {
+    path: "/register",
+    element: <Register />,
   },
   {
     path: "/home",
