@@ -5,3 +5,30 @@
 .search_content{
   padding: 100px 120px;
 }
+
+.input-wrapper {
+  :global(.ant-input-outlined) {
+    height: 40px;
+    border-radius: 20px 0 0 20px !important;
+    background: rgba(0, 0, 0, .05);
+  }
+  :global(.ant-input-search-button) {
+    width: 100px;
+    height: 40px;
+    border-radius: 0 20px 20px 0;
+    // background: rgba(255, 255, 255, 1);
+    // color: #333;
+  }
+}
+.association-wrapper {
+  padding: 10px 20px;
+  border-radius: 20px;
+  margin-top: 20px;
+  background: rgba(0, 0, 0, .05);
+  .association-item {
+    width: 100%;
+    padding: 5px 0;
+    text-align: left;
+    cursor: pointer;
+  }
+}

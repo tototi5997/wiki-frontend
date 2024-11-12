@@ -1,12 +1,59 @@
+import { useState, useRef, ChangeEvent } from "react";
+import { Input, InputRef, Spin } from "antd";
+import { useAssociation } from "@/state/entry/hook";
+import Icon from "@/components/icon";
 import c from "classnames";
 import s from "./index.module.less";
-import { Input } from "antd";
 
 const SearchPage = () => {
+  const [val, setVal] = useState('')
+  const [show, setShow] = useState(false)
+  const inputRef = useRef<InputRef>(null)
+  const { onAssociation, assData } = useAssociation()
+
+  // 搜索框变化
+  const onInput = (e: ChangeEvent<HTMLInputElement>) => {
+    setVal(e.target.value)
+    setShow(!!e.target.value)
+    const value = inputRef.current?.input?.value
+    onAssociation.mutate({q: value})
+  }
+  // 处理词条结果
+  const onHandleText = (data:any) => {
+    const newData = data.map((e:any) => {
+      if(e.title.includes(val)) {
+        const titleArr = e.title.split(val)
+        return {
+          ...e,
+          title: titleArr.join(`<span style="color: #f53f3f;">${val}</span>`)
+        }
+      } else {
+        return e
+      }
+    })
+    return newData || []
+  }
+
   return (
     <div className={c(s.search_page)}>
       <div className={c(s.search_content)}>
-        <Input.Search placeholder="请输入搜索内容" />
+        <Input.Search
+          ref={inputRef}
+          className={s['input-wrapper']}
+          placeholder="请输入搜索内容"
+          enterButton="搜索"
+          prefix={<Icon name="search" fill="#fff" />}
+          allowClear
+          value={val}
+          onChange={onInput}
+        />
+        {
+          show && <div className={c(s['association-wrapper'], 'fbv fbjc')}>
+            { onAssociation.isPending && <Spin size="large" /> }
+            { onHandleText(assData).map((e:any) => <div className={c(s['association-item'])} dangerouslySetInnerHTML={{__html: e.title}}></div>)}
+            
+          </div>
+        }
       </div>
     </div>
   );
