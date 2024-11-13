@@ -4,6 +4,7 @@ import Register from "./pages/register";
 import Home from "./pages/home";
 import NotFoundPage from "./pages/404";
 import SearchPage from "./pages/search-page";
+import EntryDetail from "./pages/entry-detail";
 
 export type RouterType = "hash" | "browser";
 
@@ -54,6 +55,10 @@ export const routerConfig: RouteObject[] = [
         element: <div>管理</div>,
       },
     ],
+  },
+  {
+    path: "/entryDetail",
+    element: <EntryDetail />,
   },
   // 404 放在最下面
   {

@@ -33,7 +33,7 @@ const SearchPage = () => {
         const titleArr = e.title.split(val);
         return {
           ...e,
-          title: titleArr.join(`<span style="color: #f53f3f;">${val}</span>`),
+          title: titleArr.join(`<span style="color: #1677ff;">${val}</span>`),
         };
       } else {
         return e;
@@ -41,6 +41,11 @@ const SearchPage = () => {
     });
     return newData || [];
   };
+
+  // 跳转词条详情页
+  const onDetail = (e:any) => {
+    console.log(e,'123')
+  }
 
   return (
     <div className={c(s.search_page)}>
@@ -61,9 +66,9 @@ const SearchPage = () => {
             {onAssociation.isPending && <Spin size="large" />}
             {!onAssociation.isPending &&
               onHandleText(assData).map((e: any) => (
-                <div className={c(s["association-item"])} dangerouslySetInnerHTML={{ __html: e.title }}></div>
+                <div className={c(s["association-item"])} dangerouslySetInnerHTML={{ __html: e.title }} onClick={() => onDetail(e)}></div>
               ))}
-            {!assData.length && !onAssociation.isPending && <div className={c(s["association-item"])}>无搜索结果</div>}
+            {!assData.length && !onAssociation.isPending && <div className={c(s["association-item"], s['no-data'])}>无搜索结果</div>}
           </div>
         )}
       </div>
