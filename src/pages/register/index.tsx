@@ -16,40 +16,46 @@ const Register = () => {
   };
   // 返回登录页
   const onReturn = () => {
-    navigate("/login")
-  }
+    navigate("/login");
+  };
 
   return (
     <div className={c(s["register-wrapper"], "fbh fbac fbjc")}>
       <div className={s["register-box"]}>
         <div className={c(s["register-title"], "fbh fbac fbjc")}>WIKI</div>
         <Form name="register" onFinish={onFinish} autoComplete="off">
-          <Form.Item<RegisterType> label="" name="username" rules={[{ required: true, message: "请输入用户名!" }]}>
-            <Input className={s["register-input"]} prefix={<Icon name="user" />} placeholder="用户名" />
+          <Form.Item<RegisterType> label="" name="username" rules={[{ required: true, message: "请输入昵称!" }]}>
+            <Input className={s["register-input"]} prefix={<Icon name="user" />} placeholder="昵称" />
           </Form.Item>
           <Form.Item<RegisterType>
             label=""
             name="email"
-            rules={[{
-              type: 'email',
-              message: '请输入正确的电子邮件',
-            }, {
-              required: true,
-              message: "请输入邮箱!"
-            }]}
+            rules={[
+              {
+                type: "email",
+                message: "请输入正确的电子邮件",
+              },
+              {
+                required: true,
+                message: "请输入邮箱!",
+              },
+            ]}
           >
             <Input className={s["register-input"]} prefix={<Icon name="email" />} placeholder="邮箱" />
           </Form.Item>
           <Form.Item<RegisterType>
             label=""
             name="password"
-            rules={[{
-              required: true,
-              message: "请输入密码!"
-            }, {
-              min: 6,
-              message: '请输入至少6位字符',
-            }]}
+            rules={[
+              {
+                required: true,
+                message: "请输入密码!",
+              },
+              {
+                min: 6,
+                message: "请输入至少6位字符",
+              },
+            ]}
           >
             <Input.Password className={s["register-input"]} prefix={<Icon name="password" />} placeholder="密码" />
           </Form.Item>
