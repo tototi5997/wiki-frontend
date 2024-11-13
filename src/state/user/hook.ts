@@ -1,5 +1,5 @@
-import { updateUserInfoAPI } from "@/api/user";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { getAllUserAPI, QueryAllUserParams, updateUserInfoAPI } from "@/api/user";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { message } from "antd";
 
 // 区分 userMyInfo，需要传入用户id
@@ -15,4 +15,12 @@ export const useUserInfo = () => {
   });
 
   return { updateUser };
+};
+
+export const useAllUsers = (params: QueryAllUserParams) => {
+  const data = useQuery({
+    queryKey: ["all-users"],
+    queryFn: () => getAllUserAPI(params),
+  });
+  return { ...data };
 };
