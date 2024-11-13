@@ -31,8 +31,8 @@ const EditUserInfoModal = () => {
           <Form.Item label="新昵称" name="username">
             <Input placeholder="请输入新昵称" />
           </Form.Item>
-          <Form.Item label="修改密码" name="password">
-            <Input placeholder="留空视为不修改密码" />
+          <Form.Item label="修改密码" name="password" rules={[{ min: 6, message: "密码至少6位" }]}>
+            <Input.Password placeholder="留空视为不修改密码" />
           </Form.Item>
         </Form>
         <div className="fbh gap-12 ml-auto">

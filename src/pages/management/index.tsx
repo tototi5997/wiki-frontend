@@ -1,60 +1,41 @@
-import { useAllUsers } from "@/state/user/hook";
-import { Table, TableProps } from "antd";
-import dayjs from "dayjs";
-import { useState } from "react";
-import { addKeysToData } from "@/utils/addKeysToData";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import c from "classnames";
 import s from "./index.module.less";
 
 const ManagementPage = () => {
-  const [userListPage, setUserListPage] = useState(1);
+  const { pathname } = useLocation();
 
-  const { data: allUsersData, isLoading: usersTableLoading } = useAllUsers({ page: userListPage, page_size: 10 });
+  const navigate = useNavigate();
 
-  const { data: userList, total: usersTotal } = allUsersData ?? {};
-
-  const userTableColumns: TableProps<any>["columns"] = [
+  const management_menus = [
     {
-      title: "用户名",
-      dataIndex: "username",
+      label: "用户管理",
+      key: "/home/admin/user-management",
     },
     {
-      title: "角色",
-      dataIndex: "is_admin",
-      render: (v) => (v ? "管理员" : "普通用户"),
+      label: "词条管理",
+      key: "/home/admin/entry-management",
     },
     {
-      title: "邮箱",
-      dataIndex: "email",
-    },
-    {
-      title: "上次登录时间",
-      dataIndex: "last_login",
-      render: (v) => dayjs(v).format("YYYY-MM-DD HH:mm"),
-    },
-    {
-      title: "操作",
-      render: () => {
-        return (
-          <div className={c("fbh fbac gap-8")}>
-            <span className={c(s.edit_text)}>编辑</span>
-            <span className={c(s.edit_text)}>积分</span>
-          </div>
-        );
-      },
+      label: "任务管理",
+      key: "/home/admin/task-management",
     },
   ];
 
   return (
     <div className={c(s.management_page)}>
-      <div className="text-[14px] font-600">用户列表</div>
-      <Table
-        className="mt-10"
-        columns={userTableColumns}
-        loading={usersTableLoading}
-        dataSource={addKeysToData(userList!) ?? []}
-        pagination={{ total: usersTotal, onChange: setUserListPage, pageSize: 10 }}
-      />
+      <div className={c("fbh gap-10", s.admin_menu)}>
+        {management_menus.map((item) => (
+          <div
+            key={item.key}
+            className={c(s.admin_menuitem, "hand usn", { [s.active]: pathname === item.key })}
+            onClick={() => navigate(item.key)}
+          >
+            {item.label}
+          </div>
+        ))}
+      </div>
+      <Outlet />
     </div>
   );
 };

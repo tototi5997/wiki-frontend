@@ -17,6 +17,11 @@ export type TypeSearchResult = {
   page_size: number;
 };
 
+export type SearchAllEntriesParams = {
+  page?: number;
+  pageSize?: number;
+};
+
 // 搜索词条
 export const searchEntry = (params: searchType): Promise<TypeSearchResult> => {
   return service({
@@ -25,10 +30,19 @@ export const searchEntry = (params: searchType): Promise<TypeSearchResult> => {
     params,
   });
 };
+
 // 获取词条详情
 export const getEntryDetail = (id: string) => {
   return service({
     url: `/entries/${id}`,
     method: "get",
+  });
+};
+
+export const getAllEntriesAPI = (params: SearchAllEntriesParams): Promise<TypeSearchResult> => {
+  return service({
+    url: "/entries",
+    method: "get",
+    params,
   });
 };

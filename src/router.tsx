@@ -8,6 +8,8 @@ import AccountInfoPage from "./pages/account-info";
 import PointsPage from "./pages/points";
 import EntryDetail from "./pages/entry-detail";
 import ManagementPage from "./pages/management";
+import UserManagement from "./pages/management/users-management";
+import EntryManagement from "./pages/management/entry-management";
 
 export type RouterType = "hash" | "browser";
 
@@ -60,6 +62,24 @@ export const routerConfig: RouteObject[] = [
       {
         path: "/home/admin",
         element: <ManagementPage />,
+        children: [
+          {
+            path: "/home/admin",
+            element: <Navigate to="/home/admin/user-management" replace />,
+          },
+          {
+            path: "/home/admin/user-management",
+            element: <UserManagement />,
+          },
+          {
+            path: "/home/admin/entry-management",
+            element: <EntryManagement />,
+          },
+          {
+            path: "/home/admin/task-management",
+            element: <div>任务管理</div>,
+          },
+        ],
       },
     ],
   },

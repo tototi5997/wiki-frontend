@@ -54,7 +54,7 @@ const Header = () => {
         {menuData.map((m) => {
           if (m.key === "/home/admin" && !is_admin) return null;
           return Children.toArray(
-            <div className={c(s.header_btn, { [s.menu_active]: m.key === pathname })} onClick={() => handleClickMenuItem(m.key)}>
+            <div className={c(s.header_btn, { [s.menu_active]: pathname.includes(m.key) })} onClick={() => handleClickMenuItem(m.key)}>
               {m.label}
             </div>
           );

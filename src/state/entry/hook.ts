@@ -1,5 +1,5 @@
-import { searchEntry, TypeEntry, getEntryDetail } from "@/api/entry";
-import { useMutation } from "@tanstack/react-query";
+import { searchEntry, TypeEntry, getEntryDetail, getAllEntriesAPI, SearchAllEntriesParams } from "@/api/entry";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 
 export const useEntry = () => {
@@ -17,4 +17,13 @@ export const useEntry = () => {
   });
 
   return { onAssociation, assData, onEntryDetail, entryDetail };
+};
+
+export const useAllEntries = (params: SearchAllEntriesParams) => {
+  const data = useQuery({
+    queryKey: ["all-entries"],
+    queryFn: () => getAllEntriesAPI(params),
+  });
+
+  return data;
 };
