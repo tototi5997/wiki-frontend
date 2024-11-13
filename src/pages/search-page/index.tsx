@@ -1,8 +1,9 @@
 import { useState, useRef, ChangeEvent, Children } from "react";
 import { Input, InputRef, message, Spin } from "antd";
-import { useAssociation } from "@/state/entry/hook";
+import { useEntry } from "@/state/entry/hook";
 import { TypeEntry } from "@/api/entry";
 import Icon from "@/components/icon";
+import { useNavigate } from "react-router-dom";
 import c from "classnames";
 import s from "./index.module.less";
 
@@ -11,7 +12,8 @@ const SearchPage = () => {
   const [show, setShow] = useState(false);
   const inputRef = useRef<InputRef>(null);
 
-  const { onAssociation, assData } = useAssociation();
+  const { onAssociation, assData } = useEntry();
+  const navigate = useNavigate();
 
   // 搜索框变化
   const onInput = (e: ChangeEvent<HTMLInputElement>) => {
@@ -46,7 +48,7 @@ const SearchPage = () => {
 
   // 跳转词条详情页
   const onDetail = (e: TypeEntry) => {
-    console.log(e,'123')
+    navigate(`/entryDetail?id=${e.id}`)
   }
 
   return (

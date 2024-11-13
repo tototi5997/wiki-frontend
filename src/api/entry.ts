@@ -25,3 +25,10 @@ export const searchEntry = (params: searchType): Promise<TypeSearchResult> => {
     params,
   });
 };
+// 获取词条详情
+export const getEntryDetail = (id: string) => {
+  return service({
+    url: `/entries/${id}`,
+    method: "get",
+  });
+};
