@@ -1,12 +1,12 @@
 import { Children } from "react";
-import { useAuthority, useUserInfo } from "@/state/auth/hook";
+import { useAuthority, useMyInfo } from "@/state/auth/hook";
 import { useLocation, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import c from "classnames";
 import s from "./index.module.less";
 
 const Header = () => {
-  const { data: userInfo } = useUserInfo();
+  const { data: userInfo } = useMyInfo();
 
   const { userLogout } = useAuthority();
 
@@ -24,6 +24,10 @@ const Header = () => {
     {
       label: "任务大厅",
       key: "/home/messionHall",
+    },
+    {
+      label: "积分榜",
+      key: "/home/points",
     },
     {
       label: "我的",
@@ -48,7 +52,7 @@ const Header = () => {
     <div className={c(s.header, "fbv")}>
       <div className={c(s.menu_content, "fbh fbac fbjc")}>
         {menuData.map((m) => {
-          if (m.key === "home/admin" && !is_admin) return null;
+          if (m.key === "/home/admin" && !is_admin) return null;
           return Children.toArray(
             <div className={c(s.header_btn, { [s.menu_active]: m.key === pathname })} onClick={() => handleClickMenuItem(m.key)}>
               {m.label}

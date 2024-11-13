@@ -27,7 +27,7 @@ export const useAuthority = () => {
 };
 
 // 获取自己的信息
-export const useUserInfo = () => {
+export const useMyInfo = () => {
   const data = useQuery({
     queryKey: ["user-info"],
     queryFn: () => getUserInfo(),

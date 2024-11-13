@@ -1,5 +1,5 @@
 import { ModalProps } from "antd";
-import DemoModal from "./contents/DemoModal";
+import EditUserInfoModal from "./contents/EditUserInfo";
 
 interface IModalMain {
   des?: string;
@@ -10,18 +10,17 @@ interface IModalMain {
 
 export type GlobalMoalType = IModalMain & ModalProps;
 
-export type ModalKey = "demo_modal";
+export type ModalKey = "edit_user_info";
 
 const modalMap = new Map<ModalKey, GlobalMoalType>([
   [
-    "demo_modal",
+    "edit_user_info",
     {
-      des: "show wallet list to change wallet",
-      component: DemoModal,
+      component: EditUserInfoModal,
       footer: null,
       noPadding: true,
-      closable: false,
-      width: 460,
+      closable: true,
+      width: 560,
     },
   ],
 ]);

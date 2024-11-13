@@ -4,6 +4,8 @@ import Register from "./pages/register";
 import Home from "./pages/home";
 import NotFoundPage from "./pages/404";
 import SearchPage from "./pages/search-page";
+import AccountInfoPage from "./pages/account-info";
+import PointsPage from "./pages/points";
 
 export type RouterType = "hash" | "browser";
 
@@ -47,7 +49,11 @@ export const routerConfig: RouteObject[] = [
       },
       {
         path: "/home/my",
-        element: <div>我的</div>,
+        element: <AccountInfoPage />,
+      },
+      {
+        path: "/home/points",
+        element: <PointsPage />,
       },
       {
         path: "/home/admin",
