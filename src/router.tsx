@@ -7,6 +7,7 @@ import SearchPage from "./pages/search-page";
 import AccountInfoPage from "./pages/account-info";
 import PointsPage from "./pages/points";
 import EntryDetail from "./pages/entry-detail";
+import ManagementPage from "./pages/management";
 
 export type RouterType = "hash" | "browser";
 
@@ -58,7 +59,7 @@ export const routerConfig: RouteObject[] = [
       },
       {
         path: "/home/admin",
-        element: <div>管理</div>,
+        element: <ManagementPage />,
       },
     ],
   },
