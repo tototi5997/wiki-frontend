@@ -1,6 +1,6 @@
 import { useState, useRef, ChangeEvent, Children } from "react";
 import { Input, InputRef, message, Spin } from "antd";
-import { useEntry } from "@/state/entry/hook";
+import { useEntrySearch } from "@/state/entry/hook";
 import { TypeEntry } from "@/api/entry";
 import Icon from "@/components/icon";
 import { useNavigate } from "react-router-dom";
@@ -12,7 +12,7 @@ const SearchPage = () => {
   const [show, setShow] = useState(false);
   const inputRef = useRef<InputRef>(null);
 
-  const { onAssociation, assData } = useEntry();
+  const { onAssociation, assData } = useEntrySearch();
   const navigate = useNavigate();
 
   // 搜索框变化
@@ -48,8 +48,8 @@ const SearchPage = () => {
 
   // 跳转词条详情页
   const onDetail = (e: TypeEntry) => {
-    navigate(`/entryDetail?id=${e.id}`)
-  }
+    navigate(`/entryDetail?id=${e.id}`);
+  };
 
   return (
     <div className={c(s.search_page)}>
@@ -70,9 +70,11 @@ const SearchPage = () => {
             {onAssociation.isPending && <Spin size="large" />}
             {!onAssociation.isPending &&
               onHandleText(assData).map((e: TypeEntry) =>
-                Children.toArray(<div className={c(s["association-item"])} dangerouslySetInnerHTML={{ __html: e.title }} onClick={() => onDetail(e)}></div>)
+                Children.toArray(
+                  <div className={c(s["association-item"])} dangerouslySetInnerHTML={{ __html: e.title }} onClick={() => onDetail(e)}></div>
+                )
               )}
-            {!assData.length && !onAssociation.isPending && <div className={c(s["association-item"], s['no-data'])}>无搜索结果</div>}
+            {!assData.length && !onAssociation.isPending && <div className={c(s["association-item"], s["no-data"])}>无搜索结果</div>}
           </div>
         )}
       </div>

@@ -20,6 +20,24 @@ export type TypeSearchResult = {
 export type SearchAllEntriesParams = {
   page?: number;
   pageSize?: number;
+  q?: string;
+};
+
+export type EntryDetail = {
+  id: number;
+  title: string;
+  content: string;
+  update_at: string;
+  cover_image?: string;
+  creator: {
+    username: string;
+  };
+};
+
+export type TypeCreateEntry = {
+  title: string;
+  content: string;
+  cover_image?: string;
 };
 
 // 搜索词条
@@ -32,17 +50,27 @@ export const searchEntry = (params: searchType): Promise<TypeSearchResult> => {
 };
 
 // 获取词条详情
-export const getEntryDetail = (id: string) => {
+export const getEntryDetail = (id: number): Promise<EntryDetail> => {
   return service({
     url: `/entries/${id}`,
     method: "get",
   });
 };
 
+// 获取所有词条
 export const getAllEntriesAPI = (params: SearchAllEntriesParams): Promise<TypeSearchResult> => {
   return service({
     url: "/entries",
     method: "get",
     params,
+  });
+};
+
+// 创建词条
+export const createEntryAPI = (data: TypeCreateEntry) => {
+  return service({
+    url: "/entries/create",
+    method: "post",
+    data,
   });
 };

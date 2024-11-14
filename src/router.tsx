@@ -10,6 +10,9 @@ import EntryDetail from "./pages/entry-detail";
 import ManagementPage from "./pages/management";
 import UserManagement from "./pages/management/users-management";
 import EntryManagement from "./pages/management/entry-management";
+import TaskManagement from "./pages/management/task-management";
+import TaskHall from "./pages/task-hall";
+import EntryAddPage from "./pages/entry-add";
 
 export type RouterType = "hash" | "browser";
 
@@ -49,7 +52,7 @@ export const routerConfig: RouteObject[] = [
       },
       {
         path: "/home/messionHall",
-        element: <div>任务大厅</div>,
+        element: <TaskHall />,
       },
       {
         path: "/home/my",
@@ -77,7 +80,7 @@ export const routerConfig: RouteObject[] = [
           },
           {
             path: "/home/admin/task-management",
-            element: <div>任务管理</div>,
+            element: <TaskManagement />,
           },
         ],
       },
@@ -86,6 +89,10 @@ export const routerConfig: RouteObject[] = [
   {
     path: "/entryDetail",
     element: <EntryDetail />,
+  },
+  {
+    path: "/entryAdd",
+    element: <EntryAddPage />,
   },
   // 404 放在最下面
   {

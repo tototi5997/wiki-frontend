@@ -5,13 +5,21 @@ import { addKeysToData } from "@/utils/addKeysToData";
 import s from "./index.module.less";
 import c from "classnames";
 import dayjs from "dayjs";
+import { useQueryClient } from "@tanstack/react-query";
+import { useNavigate } from "react-router-dom";
 
 const EntryManagement = () => {
+  const queryClient = useQueryClient();
+
   const [page, setPage] = useState(1);
 
-  const { data: entriesData, isLoading } = useAllEntries({ page, pageSize: 10 });
+  const [query, setQuery] = useState("");
+
+  const { data: entriesData, isLoading } = useAllEntries({ page, pageSize: 10, q: query });
 
   const { entries, total } = entriesData ?? {};
+
+  const navigate = useNavigate();
 
   const columns: TableProps<any>["columns"] = [
     {
@@ -40,12 +48,28 @@ const EntryManagement = () => {
     },
   ];
 
+  const handleSearch = () => {
+    queryClient.invalidateQueries({ queryKey: ["all-entries"] });
+  };
+
+  const handleAddEntry = () => {
+    navigate("/entryAdd");
+  };
+
   return (
     <div className={c(s.entry_management, "mt-20")}>
       <div className="text-[14px] font-600">词条列表</div>
       <div className="fbh mt-10 gap-20">
-        <Input.Search className="w-300" placeholder="搜索词条名称" />
-        <Button type="primary">新增词条</Button>
+        <Input.Search
+          className="w-300"
+          placeholder="搜索词条名称"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          onSearch={handleSearch}
+        />
+        <Button type="primary" onClick={handleAddEntry}>
+          新增词条
+        </Button>
       </div>
       <Table
         className="mt-10"
