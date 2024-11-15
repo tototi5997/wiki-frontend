@@ -24,11 +24,9 @@ const AccountInfoPage = () => {
 
   const [page, setPage] = useState(1);
 
-  const { data: myTasksData } = useMyTasks({ page, pageSize: 10 });
+  const { data: myTasksData, isLoading } = useMyTasks({ page, pageSize: 10 });
 
-  const { data: myTasks } = myTasksData ?? {};
-
-  console.log(myTasks);
+  const { data: myTasks, total } = myTasksData ?? {};
 
   const defaultInfoList: { label: string; value: string | number | undefined }[] = [
     {
@@ -112,7 +110,12 @@ const AccountInfoPage = () => {
       </Button>
 
       <div className="mt-20 white-1 mb-20">我的任务</div>
-      <Table columns={columns} dataSource={addKeysToData(myTasks!)} />
+      <Table
+        columns={columns}
+        loading={isLoading}
+        dataSource={addKeysToData(myTasks!)}
+        pagination={{ total, onChange: setPage, pageSize: 10, size: "small" }}
+      />
     </div>
   );
 };

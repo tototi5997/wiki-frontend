@@ -15,7 +15,7 @@ const EntryAddPage = () => {
 
   const onBack = () => history.back();
 
-  const onUploadImgChange: UploadProps["onChange"] = ({ fileList, file }) => {
+  const onUploadImgChange: UploadProps["onChange"] = ({ fileList }) => {
     setFileList(fileList);
   };
 
