@@ -1,5 +1,7 @@
 import { ModalProps } from "antd";
 import EditUserInfoModal from "./contents/EditUserInfo";
+import CreateTaskModal from "./contents/CreateTaskModal";
+import AcceptTaskConfirmModal from "./contents/AcceptTaskConfirm";
 
 interface IModalMain {
   des?: string;
@@ -10,7 +12,7 @@ interface IModalMain {
 
 export type GlobalMoalType = IModalMain & ModalProps;
 
-export type ModalKey = "edit_user_info";
+export type ModalKey = "edit_user_info" | "create_task" | "accept_task_confirm";
 
 const modalMap = new Map<ModalKey, GlobalMoalType>([
   [
@@ -21,6 +23,26 @@ const modalMap = new Map<ModalKey, GlobalMoalType>([
       noPadding: true,
       closable: true,
       width: 560,
+    },
+  ],
+  [
+    "create_task",
+    {
+      component: CreateTaskModal,
+      footer: null,
+      noPadding: true,
+      closable: true,
+      width: 560,
+    },
+  ],
+  [
+    "accept_task_confirm",
+    {
+      component: AcceptTaskConfirmModal,
+      footer: null,
+      noPadding: true,
+      closable: true,
+      width: 460,
     },
   ],
 ]);

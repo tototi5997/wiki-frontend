@@ -1,4 +1,5 @@
 import service from "@/utils/axios";
+import { TypeTask } from "./task";
 
 export type searchType = {
   q: string | undefined;
@@ -8,6 +9,7 @@ export type TypeEntry = {
   id: number;
   title: string;
   created_at: string;
+  task: null | TypeTask;
 };
 
 export type TypeSearchResult = {
@@ -38,6 +40,11 @@ export type TypeCreateEntry = {
   title: string;
   content: string;
   cover_image?: string;
+};
+
+export type TypeEditEntryParams = {
+  entryId: number;
+  content: string;
 };
 
 // 搜索词条
@@ -72,5 +79,15 @@ export const createEntryAPI = (data: TypeCreateEntry) => {
     url: "/entries/create",
     method: "post",
     data,
+  });
+};
+
+export const editEntryAPI = (params: TypeEditEntryParams) => {
+  return service({
+    url: "/entries/" + params?.entryId,
+    method: "put",
+    data: {
+      content: params?.content,
+    },
   });
 };

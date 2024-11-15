@@ -1,4 +1,12 @@
-import { searchEntry, TypeEntry, getEntryDetail, getAllEntriesAPI, SearchAllEntriesParams, createEntryAPI } from "@/api/entry";
+import {
+  searchEntry,
+  TypeEntry,
+  getEntryDetail,
+  getAllEntriesAPI,
+  SearchAllEntriesParams,
+  createEntryAPI,
+  editEntryAPI,
+} from "@/api/entry";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { message } from "antd";
 import { useState } from "react";
@@ -41,4 +49,15 @@ export const useCreateEntry = () => {
   });
 
   return { createNewEntry };
+};
+
+export const useEditEntry = (successCallback?: () => void) => {
+  const editEntry = useMutation({
+    mutationFn: editEntryAPI,
+    onSuccess: () => {
+      successCallback?.();
+    },
+  });
+
+  return { editEntry };
 };

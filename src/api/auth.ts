@@ -43,7 +43,7 @@ export const logout = () => {
   });
 };
 // 获取当前用户信息
-export const getUserInfo: () => Promise<UserInfoType> = () => {
+export const getUserInfo = (): Promise<UserInfoType> => {
   return service({
     url: "/auth/me",
     method: "get",

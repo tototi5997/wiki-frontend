@@ -1,11 +1,12 @@
 import { useEntryDetail } from "@/state/entry/hook";
 import { Button } from "antd";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { useServerImg } from "@/hooks/useServerImg";
 import dayjs from "dayjs";
 import NoImage from "@/assets/no-image.png";
 import c from "classnames";
 import s from "./index.module.less";
+import { EntryDetail } from "@/api/entry";
 
 export type EntryConfig = {
   desc?: string;
@@ -15,19 +16,27 @@ export type EntryConfig = {
   price?: number;
 };
 
-const EntryDetail = () => {
-  const navigate = useNavigate();
+const EntryDetailPage = () => {
+  // const navigate = useNavigate();
 
   const [params] = useSearchParams();
 
   const id = params.get("id");
 
-  const { data: entryDetail } = useEntryDetail(Number(id));
+  const { data: entryConfig } = useEntryDetail(Number(id));
 
-  const cover_image = useServerImg(entryDetail?.cover_image);
+  const cover_image = useServerImg(entryConfig?.cover_image);
+
+  const parseContentData = (detail?: EntryDetail) => {
+    try {
+      return JSON.parse(detail?.content || "{}");
+    } catch (error) {
+      throw new Error("解析词条内容出错");
+    }
+  };
 
   // 返回
-  const onBack = () => navigate("/home");
+  const onBack = () => history.back();
 
   // const config = {
   //   desc: "一些描述信息，用来描述词条",
@@ -37,12 +46,12 @@ const EntryDetail = () => {
   //   price: 10000,
   // };
 
-  const config = {};
+  const config = parseContentData(entryConfig);
 
   const parseConfig = (config: EntryConfig) => {
     return (
       <div className={c(s.center_text, "fbv gap-4")}>
-        <div className="m-10">{config?.desc}</div>
+        <div className="pt-10 pb-10">{config?.desc}</div>
         <p>稀有度：{config?.integra}</p>
         <p>获取途径：{config?.wayToGet}</p>
         <p>路线: {config?.route}</p>
@@ -54,10 +63,10 @@ const EntryDetail = () => {
   return (
     <div className={c(s["entry-detail-wrapper"], "relative fbh fbjc fbac")}>
       <div className={s.content}>
-        <Button color="primary" variant="link" size="small" onClick={onBack}>
+        <Button style={{ padding: 0 }} color="primary" variant="link" size="small" onClick={onBack}>
           返回
         </Button>
-        <div className={s["detail-title"]}>{entryDetail?.title}</div>
+        <div className={s["detail-title"]}>{entryConfig?.title}</div>
 
         <div className={s["detail-img"]}>
           <img src={cover_image || NoImage} alt="" />
@@ -68,15 +77,15 @@ const EntryDetail = () => {
         <div className={c(s["detail-creator"], "fbv")}>
           <div className={c(s["base-info"], "fbh")}>
             <span>创建人：</span>
-            <span>{entryDetail?.creator?.username}</span>
+            <span>{entryConfig?.creator?.username}</span>
           </div>
           <div className={c(s["base-info"], "fbh")}>
             <span>更新时间：</span>
-            <span>{entryDetail?.update_at ? dayjs(entryDetail.update_at).format("YYYY-MM-DD hh:mm:ss") : "-"}</span>
+            <span>{entryConfig?.update_at ? dayjs(entryConfig.update_at).format("YYYY-MM-DD hh:mm:ss") : "-"}</span>
           </div>
         </div>
       </div>
     </div>
   );
 };
-export default EntryDetail;
+export default EntryDetailPage;

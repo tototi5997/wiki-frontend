@@ -4,9 +4,11 @@ import { Button, Input, Select, Table, TableProps } from "antd";
 import { useAllTasks } from "@/state/task/hook";
 import { useState } from "react";
 import { addKeysToData } from "@/utils/addKeysToData";
-import { TaskStatus, TaskStatusMap } from "@/api/task";
+import { TaskStatus, TaskStatusMap, TypeTask } from "@/api/task";
 import { useQueryClient } from "@tanstack/react-query";
 import Icon from "@/components/icon";
+import useModal from "@/hooks/useModal";
+import { useNavigate } from "react-router-dom";
 
 const TaskManagement = () => {
   const queryClient = useQueryClient();
@@ -21,7 +23,11 @@ const TaskManagement = () => {
 
   const { data: tasks, total } = tasksData ?? {};
 
-  const columns: TableProps<any>["columns"] = [
+  const modal = useModal();
+
+  const navigate = useNavigate();
+
+  const columns: TableProps<TypeTask>["columns"] = [
     {
       title: "名称",
       dataIndex: "title",
@@ -38,17 +44,27 @@ const TaskManagement = () => {
     },
     {
       title: "操作",
-      render: () => (
+      render: (_, record) => (
         <div className={c("fbh fbac gap-8")}>
-          <span className={c(s.edit_text)}>查看</span>
+          <span className={c(s.edit_text)} onClick={() => handleToTaskDetail(record)}>
+            查看
+          </span>
           <span className={c(s.edit_text)}>删除</span>
         </div>
       ),
     },
   ];
 
+  const handleToTaskDetail = (task: TypeTask) => {
+    navigate("/taskDetail/" + task.id);
+  };
+
   const handleSearch = () => {
     queryClient.invalidateQueries({ queryKey: ["all-tasks"] });
+  };
+
+  const handleCreateTask = () => {
+    modal?.show("create_task");
   };
 
   return (
@@ -70,7 +86,9 @@ const TaskManagement = () => {
         <Button onClick={handleSearch}>
           <Icon name="search" />
         </Button>
-        <Button type="primary">发布任务</Button>
+        <Button type="primary" onClick={handleCreateTask}>
+          发布任务
+        </Button>
       </div>
       <Table
         className="mt-10"

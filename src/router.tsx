@@ -13,6 +13,11 @@ import EntryManagement from "./pages/management/entry-management";
 import TaskManagement from "./pages/management/task-management";
 import TaskHall from "./pages/task-hall";
 import EntryAddPage from "./pages/entry-add";
+import TaskDetailPage from "./pages/task-detail";
+import EntryEditPage from "./pages/entry-edit";
+import AdminEntryEditPage from "./pages/entry-edit-admin";
+import SubmissionManagement from "./pages/management/submission-management";
+import SubmissionVerify from "./pages/submision-verify";
 
 export type RouterType = "hash" | "browser";
 
@@ -82,6 +87,10 @@ export const routerConfig: RouteObject[] = [
             path: "/home/admin/task-management",
             element: <TaskManagement />,
           },
+          {
+            path: "/home/admin/submission-management",
+            element: <SubmissionManagement />,
+          },
         ],
       },
     ],
@@ -91,8 +100,24 @@ export const routerConfig: RouteObject[] = [
     element: <EntryDetail />,
   },
   {
+    path: "/entryEdit/admin/:entryId",
+    element: <AdminEntryEditPage />,
+  },
+  {
+    path: "/entryEdit/:entryId/:taskId",
+    element: <EntryEditPage />,
+  },
+  {
     path: "/entryAdd",
     element: <EntryAddPage />,
+  },
+  {
+    path: "/taskDetail/:taskId",
+    element: <TaskDetailPage />,
+  },
+  {
+    path: "/submissionVerify/:id/:entryId",
+    element: <SubmissionVerify />,
   },
   // 404 放在最下面
   {

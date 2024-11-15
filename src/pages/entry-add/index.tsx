@@ -77,19 +77,19 @@ const EntryAddPage = () => {
           </Form.Item>
 
           <Form.Item name="desc" label="描述信息">
-            <Input.TextArea style={{ width: 400 }} placeholder="该词条的描述信息，用处/作用等等" />
+            <Input.TextArea style={{ width: 400 }} placeholder="该词条的描述信息，用处,作用等等" />
           </Form.Item>
 
           <Form.Item name="integra" label="稀有程度">
-            <Input style={{ width: 400 }} />
+            <Input style={{ width: 400 }} placeholder="低级稀有/高级稀有/副本稀有" />
           </Form.Item>
 
           <Form.Item name="wayToGet" label="获取途径">
-            <Input style={{ width: 400 }} />
+            <Input style={{ width: 400 }} placeholder="具体到哪个任务/哪个怪物NPC掉落" />
           </Form.Item>
 
           <Form.Item name="route" label="获取路线">
-            <Input style={{ width: 400 }} />
+            <Input style={{ width: 400 }} placeholder="统一从小贝为出发点" />
           </Form.Item>
 
           <Form.Item name="price" label="市场估值">

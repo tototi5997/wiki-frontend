@@ -20,6 +20,10 @@ const ManagementPage = () => {
       label: "任务管理",
       key: "/home/admin/task-management",
     },
+    {
+      label: "审核管理",
+      key: "/home/admin/submission-management",
+    },
   ];
 
   return (

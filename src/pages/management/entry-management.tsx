@@ -7,6 +7,7 @@ import c from "classnames";
 import dayjs from "dayjs";
 import { useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
+import { EntryDetail } from "@/api/entry";
 
 const EntryManagement = () => {
   const queryClient = useQueryClient();
@@ -21,7 +22,7 @@ const EntryManagement = () => {
 
   const navigate = useNavigate();
 
-  const columns: TableProps<any>["columns"] = [
+  const columns: TableProps<EntryDetail>["columns"] = [
     {
       title: "名称",
       dataIndex: "title",
@@ -38,15 +39,27 @@ const EntryManagement = () => {
     },
     {
       title: "操作",
-      render: () => (
+      render: (_, record) => (
         <div className={c("fbh fbac gap-8")}>
-          <span className={c(s.edit_text)}>查看</span>
-          <span className={c(s.edit_text)}>编辑</span>
+          <span className={c(s.edit_text)} onClick={() => handleToEntryDetail(record)}>
+            查看
+          </span>
+          <span className={c(s.edit_text)} onClick={() => handleEditEntry(record)}>
+            编辑
+          </span>
           <span className={c(s.edit_text)}>删除</span>
         </div>
       ),
     },
   ];
+
+  const handleToEntryDetail = (entry: EntryDetail) => {
+    navigate("/entryDetail?id=" + entry.id);
+  };
+
+  const handleEditEntry = (entry: EntryDetail) => {
+    navigate("/entryEdit/admin/" + entry?.id);
+  };
 
   const handleSearch = () => {
     queryClient.invalidateQueries({ queryKey: ["all-entries"] });
