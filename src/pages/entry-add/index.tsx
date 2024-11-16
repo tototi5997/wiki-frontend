@@ -11,7 +11,9 @@ const EntryAddPage = () => {
 
   const [fromRef] = useForm();
 
-  const { createNewEntry } = useCreateEntry();
+  const { createNewEntry } = useCreateEntry(() => {
+    history.back();
+  });
 
   const onBack = () => history.back();
 
@@ -61,7 +63,8 @@ const EntryAddPage = () => {
           <Form.Item name="cover_image" label="图片信息" rules={[{ required: true, message: "图片信息不可为空" }]}>
             <Upload
               name="file"
-              action="http://10.1.5.66:3000/upload/image"
+              // action="http://10.1.5.66:3000/upload/image"
+              action="http://121.37.180.58:3000/upload/image"
               listType="picture-card"
               maxCount={1}
               fileList={fileList}

@@ -91,3 +91,10 @@ export const editEntryAPI = (params: TypeEditEntryParams) => {
     },
   });
 };
+
+export const deleteEntryAPI = (id: number) => {
+  return service({
+    url: "/entries/" + id,
+    method: "delete",
+  });
+};

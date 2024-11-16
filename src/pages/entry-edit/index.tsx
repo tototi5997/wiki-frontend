@@ -1,6 +1,6 @@
 import c from "classnames";
 import s from "./index.module.less";
-import { Button, Form, Input, InputNumber, message } from "antd";
+import { Button, Form, Image, Input, InputNumber, message } from "antd";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEntryDetail } from "@/state/entry/hook";
 import { useServerImg } from "@/hooks/useServerImg";
@@ -57,7 +57,7 @@ const EntryEditPage = () => {
           <div>词条名称：{entryDetail?.title ?? "-"}</div>
           <div className="fbh">
             <div>图片信息：</div>
-            <img src={coverImage ?? ""} className="w-80 h-80" />
+            <Image src={coverImage} />
           </div>
         </div>
 

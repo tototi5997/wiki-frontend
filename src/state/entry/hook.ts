@@ -6,6 +6,7 @@ import {
   SearchAllEntriesParams,
   createEntryAPI,
   editEntryAPI,
+  deleteEntryAPI,
 } from "@/api/entry";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { message } from "antd";
@@ -40,11 +41,12 @@ export const useAllEntries = (params: SearchAllEntriesParams) => {
   return data;
 };
 
-export const useCreateEntry = () => {
+export const useCreateEntry = (successCallback?: () => void) => {
   const createNewEntry = useMutation({
     mutationFn: createEntryAPI,
     onSuccess: () => {
       message.success("词条创建成功");
+      successCallback?.();
     },
   });
 
@@ -60,4 +62,14 @@ export const useEditEntry = (successCallback?: () => void) => {
   });
 
   return { editEntry };
+};
+
+export const useDeleteEntry = (successCallback?: () => void) => {
+  const deleteEntry = useMutation({
+    mutationFn: deleteEntryAPI,
+    onSuccess: () => {
+      successCallback?.();
+    },
+  });
+  return { deleteEntry };
 };
