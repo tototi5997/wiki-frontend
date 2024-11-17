@@ -9,6 +9,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import Icon from "@/components/icon";
 import useModal from "@/hooks/useModal";
 import { useNavigate } from "react-router-dom";
+import dayjs from "dayjs";
 
 const TaskManagement = () => {
   const queryClient = useQueryClient();
@@ -38,6 +39,11 @@ const TaskManagement = () => {
       render: (v) => v ?? "-",
     },
     {
+      title: "创建时间",
+      dataIndex: "create_at",
+      render: (v) => dayjs(v).format("YYYY-MM-DD HH:mm"),
+    },
+    {
       title: "状态",
       dataIndex: "status",
       render: (v: TaskStatus) => TaskStatusMap?.[v],
@@ -49,11 +55,17 @@ const TaskManagement = () => {
           <span className={c(s.edit_text)} onClick={() => handleToTaskDetail(record)}>
             查看
           </span>
-          <span className={c(s.edit_text)}>删除</span>
+          <span className={c(s.edit_text)} onClick={() => handleDeleteTask(record)}>
+            删除
+          </span>
         </div>
       ),
     },
   ];
+
+  const handleDeleteTask = (record: TypeTask) => {
+    modal?.show("delete_task_confirm", record);
+  };
 
   const handleToTaskDetail = (task: TypeTask) => {
     navigate("/taskDetail/" + task.id);
