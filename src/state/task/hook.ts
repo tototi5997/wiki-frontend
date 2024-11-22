@@ -1,4 +1,13 @@
-import { createTaskAPI, getMyTasksAPI, getTaskDetailAPI, getTasksAPI, takeTaskAPI, TypeQueryAllTasks, TypeQueryMyTask } from "@/api/task";
+import {
+  createTaskAPI,
+  deleteTaskAPI,
+  getMyTasksAPI,
+  getTaskDetailAPI,
+  getTasksAPI,
+  takeTaskAPI,
+  TypeQueryAllTasks,
+  TypeQueryMyTask,
+} from "@/api/task";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { message } from "antd";
 
@@ -52,4 +61,15 @@ export const useMyTasks = (params: TypeQueryMyTask) => {
     queryFn: () => getMyTasksAPI(params),
   });
   return data;
+};
+
+export const useDeleteTask = (successCallback?: () => void) => {
+  const deleteTask = useMutation({
+    mutationFn: deleteTaskAPI,
+    onSuccess: () => {
+      successCallback?.();
+    },
+  });
+
+  return { deleteTask };
 };

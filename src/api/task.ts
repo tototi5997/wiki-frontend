@@ -19,6 +19,7 @@ export type TypeTask = {
   title: string;
   description?: string;
   status: TaskStatus;
+  create_at: string;
 };
 
 export const TaskStatusMap: Record<TaskStatus, string> = {
@@ -91,5 +92,13 @@ export const getMyTasksAPI = (data: TypeQueryMyTask): Promise<{ data: TypeTask[]
     url: "/tasks/me",
     method: "post",
     data,
+  });
+};
+
+// 删除任务
+export const deleteTaskAPI = (taskId: number) => {
+  return service({
+    url: "/tasks/delete/" + taskId,
+    method: "delete",
   });
 };

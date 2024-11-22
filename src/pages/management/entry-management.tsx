@@ -8,6 +8,7 @@ import dayjs from "dayjs";
 import { useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import { EntryDetail } from "@/api/entry";
+import useModal from "@/hooks/useModal";
 
 const EntryManagement = () => {
   const queryClient = useQueryClient();
@@ -21,6 +22,8 @@ const EntryManagement = () => {
   const { entries, total } = entriesData ?? {};
 
   const navigate = useNavigate();
+
+  const modal = useModal();
 
   const columns: TableProps<EntryDetail>["columns"] = [
     {
@@ -47,11 +50,17 @@ const EntryManagement = () => {
           <span className={c(s.edit_text)} onClick={() => handleEditEntry(record)}>
             编辑
           </span>
-          <span className={c(s.edit_text)}>删除</span>
+          <span className={c(s.edit_text)} onClick={() => handleShowConfirmModal(record)}>
+            删除
+          </span>
         </div>
       ),
     },
   ];
+
+  const handleShowConfirmModal = (record: EntryDetail) => {
+    modal?.show("delete_entry_confirm", record);
+  };
 
   const handleToEntryDetail = (entry: EntryDetail) => {
     navigate("/entryDetail?id=" + entry.id);

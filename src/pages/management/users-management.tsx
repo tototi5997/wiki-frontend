@@ -5,6 +5,8 @@ import { useState } from "react";
 import { useAllUsers } from "@/state/user/hook";
 import dayjs from "dayjs";
 import { addKeysToData } from "@/utils/addKeysToData";
+import { UserInfoType } from "@/api/auth";
+import useModal from "@/hooks/useModal";
 
 const UserManagement = () => {
   const [userListPage, setUserListPage] = useState(1);
@@ -13,7 +15,9 @@ const UserManagement = () => {
 
   const { data: userList, total: usersTotal } = allUsersData ?? {};
 
-  const userTableColumns: TableProps<any>["columns"] = [
+  const modal = useModal();
+
+  const userTableColumns: TableProps<UserInfoType>["columns"] = [
     {
       title: "用户名",
       dataIndex: "username",
@@ -34,16 +38,22 @@ const UserManagement = () => {
     },
     {
       title: "操作",
-      render: () => {
+      render: (_, record) => {
         return (
           <div className={c("fbh fbac gap-8")}>
             <span className={c(s.edit_text)}>编辑</span>
-            <span className={c(s.edit_text)}>积分</span>
+            <span className={c(s.edit_text)} onClick={() => handleEditUserPoints(record)}>
+              积分
+            </span>
           </div>
         );
       },
     },
   ];
+
+  const handleEditUserPoints = (userInfo: UserInfoType) => {
+    modal?.show("edit_user_points", userInfo);
+  };
 
   return (
     <div className={c(s.user_management, "mt-20")}>

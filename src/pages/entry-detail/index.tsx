@@ -1,9 +1,8 @@
 import { useEntryDetail } from "@/state/entry/hook";
-import { Button } from "antd";
+import { Button, Image } from "antd";
 import { useSearchParams } from "react-router-dom";
 import { useServerImg } from "@/hooks/useServerImg";
 import dayjs from "dayjs";
-import NoImage from "@/assets/no-image.png";
 import c from "classnames";
 import s from "./index.module.less";
 import { EntryDetail } from "@/api/entry";
@@ -68,9 +67,7 @@ const EntryDetailPage = () => {
         </Button>
         <div className={s["detail-title"]}>{entryConfig?.title}</div>
 
-        <div className={s["detail-img"]}>
-          <img src={cover_image || NoImage} alt="" />
-        </div>
+        <Image src={cover_image} />
 
         {parseConfig(config)}
 
