@@ -93,7 +93,7 @@ const AccountInfoPage = () => {
   };
 
   return (
-    <div className={s.account_info}>
+    <div className={c(s.account_info, "px-0 py-170 mobile:px-20 mobile:py-0")}>
       <div className={c("fbv gap-10", s.info_content)}>
         {defaultInfoList.map((item) => {
           return Children.toArray(

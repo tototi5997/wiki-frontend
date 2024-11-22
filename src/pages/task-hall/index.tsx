@@ -28,7 +28,7 @@ const TaskHall = () => {
   };
 
   return (
-    <div className={c(s.task_hall)}>
+    <div className={c(s.task_hall, "px-0 py-170 mobile:px-20 mobile:py-0")}>
       <div className={c("fbh fbac gap-12")}>
         <Select
           options={[

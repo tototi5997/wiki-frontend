@@ -21,7 +21,7 @@ const Register = () => {
 
   return (
     <div className={c(s["register-wrapper"], "fbh fbac fbjc")}>
-      <div className={s["register-box"]}>
+      <div className={c(s["register-box"], "pr w-500 h-320 p-20 rounded-[8px] mobile:w-340")}>
         <div className={c(s["register-title"], "fbh fbac fbjc")}>WIKI</div>
         <Form name="register" onFinish={onFinish} autoComplete="off">
           <Form.Item<RegisterType> label="" name="username" rules={[{ required: true, message: "请输入昵称!" }]}>

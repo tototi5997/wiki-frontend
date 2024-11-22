@@ -8,6 +8,7 @@
   margin: 0;
   padding: 0;
   transition: background-color, color, background 0.3s;
+  touch-action: manipulation;
 }
 
 body {

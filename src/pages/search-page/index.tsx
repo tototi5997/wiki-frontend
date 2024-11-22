@@ -52,8 +52,8 @@ const SearchPage = () => {
   };
 
   return (
-    <div className={c(s.search_page)}>
-      <div className={c(s.search_content)}>
+    <div className={c(s.search_page, "px-0 py-170 mobile:px-20 mobile:py-0")}>
+      <div className={c(s.search_content, "px-100 py-120 mobile:px-10 mobile:py-120")}>
         <Input.Search
           ref={inputRef}
           className={s["input-wrapper"]}

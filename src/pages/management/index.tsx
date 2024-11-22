@@ -27,7 +27,7 @@ const ManagementPage = () => {
   ];
 
   return (
-    <div className={c(s.management_page)}>
+    <div className={c(s.management_page, "pt-0 pb-20 py-170 mobile:px-20 mobile:pt-0 mobile:pb-20")}>
       <div className={c("fbh gap-10", s.admin_menu)}>
         {management_menus.map((item) => (
           <div

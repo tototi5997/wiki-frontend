@@ -59,7 +59,7 @@ const UserManagement = () => {
     <div className={c(s.user_management, "mt-20")}>
       <div className="text-[14px] font-600">用户列表</div>
       <Table
-        className="mt-10"
+        className="mt-10 mobile:h-400 mobile:overflow-auto"
         columns={userTableColumns}
         loading={usersTableLoading}
         dataSource={addKeysToData(userList!) ?? []}

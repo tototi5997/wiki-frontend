@@ -4,12 +4,16 @@ import Icon from "@/components/icon";
 import type { FormProps } from "antd";
 import { useAuthority } from "@/state/auth/hook";
 import { useNavigate } from "react-router-dom";
+import { useIsMobile } from "@/hooks/useIsMobile";
 import c from "classnames";
 import s from "./index.module.less";
 
 const Login = () => {
   const { userLogin } = useAuthority();
+
   const navigate = useNavigate();
+
+  const { isMobile } = useIsMobile();
   // 登录
   const onFinish: FormProps<LoginType>["onFinish"] = (values) => {
     userLogin.mutate(values);
@@ -21,9 +25,14 @@ const Login = () => {
 
   return (
     <div className={c(s["login-wrapper"], "fbh fbac fbjc pr")}>
-      <div className={c(s["login-box"], "pr")}>
-        <div className={c(s.person, "pa")} />
-        <div className={c(s.person_2, "pa")} />
+      <div className={c(s["login-box"], "pr w-500 h-320 p-20 rounded-[8px] mobile:w-340")}>
+        {!isMobile && (
+          <>
+            <div className={c(s.person, "pa")} />
+            <div className={c(s.person_2, "pa")} />
+          </>
+        )}
+
         <div className={c(s["login-title"], "fbh fbac fbjc")}>WIKI</div>
         <Form name="login" onFinish={onFinish} autoComplete="off">
           <Form.Item<LoginType>
