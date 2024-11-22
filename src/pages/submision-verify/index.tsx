@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, InputNumber, message } from "antd";
+import { Button, Image, InputNumber, message } from "antd";
 import { useParams } from "react-router-dom";
 import { useEntryDetail } from "@/state/entry/hook";
 import { useServerImg } from "@/hooks/useServerImg";
@@ -65,7 +65,7 @@ const SubmissionVerify = () => {
           <div>提交用户：{user?.username ?? "-"}</div>
           <div className="fbh">
             <div>图片信息：</div>
-            <img src={coverImage ?? ""} className="w-80 h-80" />
+            <Image src={coverImage} />
           </div>
         </div>
 
