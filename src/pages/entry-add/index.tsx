@@ -48,7 +48,7 @@ const EntryAddPage = () => {
 
   return (
     <div className={c(s.entry_add, "w-full h-full fbv fbac")}>
-      <div className={c(s.content)}>
+      <div className={c(s.content, 'px-170 pt-50 mobile:px-20 mobile:pt-10')}>
         <Button style={{ padding: 0 }} color="primary" variant="link" size="small" onClick={onBack}>
           返回
         </Button>
@@ -100,7 +100,7 @@ const EntryAddPage = () => {
           </Form.Item>
         </Form>
 
-        <div className="fbh gap-20 mt-120">
+        <div className="fbh gap-20 mt-120 mobile:mt-40">
           <Button className="w-120" type="primary" onClick={handleCreateEntry}>
             创建
           </Button>

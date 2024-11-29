@@ -18,6 +18,7 @@ import EntryEditPage from "./pages/entry-edit";
 import AdminEntryEditPage from "./pages/entry-edit-admin";
 import SubmissionManagement from "./pages/management/submission-management";
 import SubmissionVerify from "./pages/submision-verify";
+import CollectionPage from "./pages/collection-page";
 
 export type RouterType = "hash" | "browser";
 
@@ -66,6 +67,10 @@ export const routerConfig: RouteObject[] = [
       {
         path: "/home/points",
         element: <PointsPage />,
+      },
+      {
+        path: "/home/collect",
+        element: <CollectionPage />,
       },
       {
         path: "/home/admin",

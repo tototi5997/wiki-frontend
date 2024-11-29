@@ -16,18 +16,18 @@ const ManagementPage = () => {
       label: "词条管理",
       key: "/home/admin/entry-management",
     },
-    {
-      label: "任务管理",
-      key: "/home/admin/task-management",
-    },
-    {
-      label: "审核管理",
-      key: "/home/admin/submission-management",
-    },
+    // {
+    //   label: "任务管理",
+    //   key: "/home/admin/task-management",
+    // },
+    // {
+    //   label: "审核管理",
+    //   key: "/home/admin/submission-management",
+    // },
   ];
 
   return (
-    <div className={c(s.management_page, "pt-0 pb-20 py-170 mobile:px-20 mobile:pt-0 mobile:pb-20")}>
+    <div className={c(s.management_page, "pt-0 pb-20 px-170 mobile:px-20 mobile:pt-0 mobile:pb-20")}>
       <div className={c("fbh gap-10", s.admin_menu)}>
         {management_menus.map((item) => (
           <div

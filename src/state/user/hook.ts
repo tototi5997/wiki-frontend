@@ -18,8 +18,9 @@ export const useUserInfo = () => {
 };
 
 export const useAllUsers = (params: QueryAllUserParams) => {
+  const { page } = params;
   const data = useQuery({
-    queryKey: ["all-users"],
+    queryKey: ["all-users", page],
     queryFn: () => getAllUserAPI(params),
   });
   return { ...data };

@@ -54,14 +54,14 @@ const EntryDetailPage = () => {
         <p>稀有度：{config?.integra}</p>
         <p>获取途径：{config?.wayToGet}</p>
         <p>路线: {config?.route}</p>
-        <p>市场估值: {config?.price}</p>
+        <p>市场估值: {config?.price}w</p>
       </div>
     );
   };
 
   return (
     <div className={c(s["entry-detail-wrapper"], "relative fbh fbjc fbac")}>
-      <div className={s.content}>
+      <div className={c(s.content, "px-170 pt-50 mobile:px-20 mobile:pt-10")}>
         <Button style={{ padding: 0 }} color="primary" variant="link" size="small" onClick={onBack}>
           返回
         </Button>

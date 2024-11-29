@@ -33,8 +33,9 @@ export const useEntryDetail = (id: number) => {
 };
 
 export const useAllEntries = (params: SearchAllEntriesParams) => {
+  const { page } = params;
   const data = useQuery({
-    queryKey: ["all-entries"],
+    queryKey: ["all-entries", page],
     queryFn: () => getAllEntriesAPI(params),
   });
 

@@ -62,8 +62,9 @@ const UserManagement = () => {
         className="mt-10 mobile:h-400 mobile:overflow-auto"
         columns={userTableColumns}
         loading={usersTableLoading}
+        scroll={{ x: "max-content" }}
         dataSource={addKeysToData(userList!) ?? []}
-        pagination={{ total: usersTotal, onChange: setUserListPage, pageSize: 10, size: "small" }}
+        pagination={{ total: usersTotal, onChange: setUserListPage, pageSize: 10, size: "small", showSizeChanger: false }}
       />
     </div>
   );

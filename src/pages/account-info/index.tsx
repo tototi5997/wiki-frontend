@@ -1,15 +1,15 @@
-import { Children, useState } from "react";
-import { Button, Table, TableProps } from "antd";
+import { Children } from "react";
+import { Button } from "antd";
 import { useMyInfo } from "@/state/auth/hook";
 import { useMyPoints } from "@/state/points/hook";
 import useModal from "@/hooks/useModal";
 import dayjs from "dayjs";
 import c from "classnames";
 import s from "./index.module.less";
-import { useMyTasks } from "@/state/task/hook";
-import { TaskStatus, TaskStatusMap, TypeTask } from "@/api/task";
-import { addKeysToData } from "@/utils/addKeysToData";
-import { useNavigate } from "react-router-dom";
+// import { useMyTasks } from "@/state/task/hook";
+// import { TaskStatus, TaskStatusMap, TypeTask } from "@/api/task";
+// import { addKeysToData } from "@/utils/addKeysToData";
+// import { useNavigate } from "react-router-dom";
 
 const AccountInfoPage = () => {
   const { data: userInfo } = useMyInfo();
@@ -18,15 +18,15 @@ const AccountInfoPage = () => {
 
   const { username, is_admin, email, created_at } = userInfo ?? {};
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const modal = useModal();
 
-  const [page, setPage] = useState(1);
+  // const [page, setPage] = useState(1);
 
-  const { data: myTasksData, isLoading } = useMyTasks({ page, pageSize: 10 });
+  // const { data: myTasksData, isLoading } = useMyTasks({ page, pageSize: 10 });
 
-  const { data: myTasks, total } = myTasksData ?? {};
+  // const { data: myTasks, total } = myTasksData ?? {};
 
   const defaultInfoList: { label: string; value: string | number | undefined }[] = [
     {
@@ -55,45 +55,45 @@ const AccountInfoPage = () => {
     },
   ];
 
-  const columns: TableProps<any>["columns"] = [
-    {
-      title: "名称",
-      dataIndex: "title",
-    },
-    {
-      title: "描述信息",
-      dataIndex: "description",
-      render: (v) => v ?? "-",
-    },
-    {
-      title: "状态",
-      dataIndex: "status",
-      render: (v: TaskStatus) => TaskStatusMap?.[v],
-    },
-    {
-      title: "操作",
-      render: (_, record) => {
-        return (
-          <div>
-            <span className="blue-1 hand usn" onClick={() => handleToTaskDetail(record)}>
-              查看
-            </span>
-          </div>
-        );
-      },
-    },
-  ];
+  // const columns: TableProps<any>["columns"] = [
+  //   {
+  //     title: "名称",
+  //     dataIndex: "title",
+  //   },
+  //   {
+  //     title: "描述信息",
+  //     dataIndex: "description",
+  //     render: (v) => v ?? "-",
+  //   },
+  //   {
+  //     title: "状态",
+  //     dataIndex: "status",
+  //     render: (v: TaskStatus) => TaskStatusMap?.[v],
+  //   },
+  //   {
+  //     title: "操作",
+  //     render: (_, record) => {
+  //       return (
+  //         <div>
+  //           <span className="blue-1 hand usn" onClick={() => handleToTaskDetail(record)}>
+  //             查看
+  //           </span>
+  //         </div>
+  //       );
+  //     },
+  //   },
+  // ];
 
-  const handleToTaskDetail = (task: TypeTask) => {
-    navigate("/taskDetail/" + task.id);
-  };
+  // const handleToTaskDetail = (task: TypeTask) => {
+  //   navigate("/taskDetail/" + task.id);
+  // };
 
   const handleOpenEditModal = () => {
     modal?.show("edit_user_info");
   };
 
   return (
-    <div className={c(s.account_info, "px-0 py-170 mobile:px-20 mobile:py-0")}>
+    <div className={c(s.account_info, "px-170 pt-40 mobile:px-20 mobile:py-0")}>
       <div className={c("fbv gap-10", s.info_content)}>
         {defaultInfoList.map((item) => {
           return Children.toArray(
@@ -109,13 +109,13 @@ const AccountInfoPage = () => {
         修改个人信息
       </Button>
 
-      <div className="mt-20 white-1 mb-20">我的任务</div>
+      {/* <div className="mt-20 white-1 mb-20">我的任务</div>
       <Table
         columns={columns}
         loading={isLoading}
         dataSource={addKeysToData(myTasks!)}
         pagination={{ total, onChange: setPage, pageSize: 10, size: "small" }}
-      />
+      /> */}
     </div>
   );
 };

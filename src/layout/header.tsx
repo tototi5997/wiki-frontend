@@ -21,14 +21,14 @@ const Header = () => {
       label: "首页",
       key: "/home/index",
     },
-    {
-      label: "任务大厅",
-      key: "/home/messionHall",
-    },
-    {
-      label: "积分榜",
-      key: "/home/points",
-    },
+    // {
+    //   label: "任务大厅",
+    //   key: "/home/messionHall",
+    // },
+    // {
+    //   label: "积分榜",
+    //   key: "/home/points",
+    // },
     {
       label: "我的",
       key: "/home/my",
@@ -36,6 +36,10 @@ const Header = () => {
     {
       label: "管理",
       key: "/home/admin",
+    },
+    {
+      label: "大合照",
+      key: "/home/collect",
     },
   ];
 

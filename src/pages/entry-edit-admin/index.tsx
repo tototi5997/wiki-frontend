@@ -43,7 +43,7 @@ const AdminEntryEditPage = () => {
 
   return (
     <div className={c(s.entry_edit, "w-full h-full fbh fbjc")}>
-      <div className={c(s.content)}>
+      <div className={c(s.content, 'px-170 pt-50 mobile:px-20 mobile:pt-10 mobile:pb-20')}>
         <Button style={{ padding: 0 }} color="primary" variant="link" size="small" onClick={onBack}>
           返回
         </Button>
@@ -78,7 +78,7 @@ const AdminEntryEditPage = () => {
           </Form.Item>
         </Form>
 
-        <div className="mt-120 fbh fbje gap-12">
+        <div className="mt-120 fbh fbje gap-12 mobile:mt-40">
           <Button type="primary" onClick={handleSubmit}>
             提交
           </Button>

@@ -97,8 +97,9 @@ const EntryManagement = () => {
         className="mt-10"
         columns={columns}
         loading={isLoading}
+        scroll={{ x: "max-content" }}
         dataSource={addKeysToData(entries!)}
-        pagination={{ total, onChange: setPage, pageSize: 10, size: "small" }}
+        pagination={{ total, onChange: setPage, pageSize: 10, size: "small", showSizeChanger: false }}
       />
     </div>
   );
