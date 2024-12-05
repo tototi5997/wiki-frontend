@@ -5,6 +5,7 @@ import AcceptTaskConfirmModal from "./contents/AcceptTaskConfirm";
 import DeleteEntryModal from "./contents/DeleteEntryModal";
 import DeleteTaskModal from "./contents/DeleteTaskModal";
 import EditUserPointsModal from "./contents/EditUserPointsModal";
+import DeleteCollectionModal from "./contents/DeleteCollectionModal";
 
 interface IModalMain {
   des?: string;
@@ -21,7 +22,8 @@ export type ModalKey =
   | "accept_task_confirm"
   | "delete_entry_confirm"
   | "delete_task_confirm"
-  | "edit_user_points";
+  | "edit_user_points"
+  | "delete_collection_confirm";
 
 const modalMap = new Map<ModalKey, GlobalMoalType>([
   [
@@ -82,6 +84,16 @@ const modalMap = new Map<ModalKey, GlobalMoalType>([
       noPadding: true,
       closable: true,
       width: 560,
+    },
+  ],
+  [
+    "delete_collection_confirm",
+    {
+      component: DeleteCollectionModal,
+      footer: null,
+      noPadding: true,
+      closable: true,
+      width: 460,
     },
   ],
 ]);

@@ -19,6 +19,8 @@ import AdminEntryEditPage from "./pages/entry-edit-admin";
 import SubmissionManagement from "./pages/management/submission-management";
 import SubmissionVerify from "./pages/submision-verify";
 import CollectionPage from "./pages/collection-page";
+import CollectionManagement from "./pages/management/collection-management";
+import CollectionEdit from "./pages/collection-edit";
 
 export type RouterType = "hash" | "browser";
 
@@ -96,6 +98,10 @@ export const routerConfig: RouteObject[] = [
             path: "/home/admin/submission-management",
             element: <SubmissionManagement />,
           },
+          {
+            path: "/home/admin/collection-management",
+            element: <CollectionManagement />,
+          },
         ],
       },
     ],
@@ -123,6 +129,14 @@ export const routerConfig: RouteObject[] = [
   {
     path: "/submissionVerify/:id/:entryId",
     element: <SubmissionVerify />,
+  },
+  {
+    path: "/collections/add",
+    element: <CollectionEdit />,
+  },
+  {
+    path: "/collections/edit/:id",
+    element: <CollectionEdit />,
   },
   // 404 放在最下面
   {

@@ -6,3 +6,5 @@ export const useServerImg = (url?: string) => {
   // const prefix = "http://"  // pc
   return prefix + url;
 };
+
+export const serverPrefix = "http://121.37.180.58:3000";

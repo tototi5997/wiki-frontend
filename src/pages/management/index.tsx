@@ -16,6 +16,10 @@ const ManagementPage = () => {
       label: "词条管理",
       key: "/home/admin/entry-management",
     },
+    {
+      label: "合照管理",
+      key: "/home/admin/collection-management",
+    },
     // {
     //   label: "任务管理",
     //   key: "/home/admin/task-management",
