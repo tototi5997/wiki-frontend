@@ -26,7 +26,7 @@ const CollectionPage = () => {
     });
   };
   return (
-    <div className={c(s.collection_page, "px-170 pt-50 mobile:px-20 mobile:pt-10")}>
+    <div className={c(s.collection_page, "px-170 pt-50 mobile:px-20 mobile:pt-10 h-full")}>
       <div className={c(s.content)}>
         <Timeline items={renderCollections()} />
       </div>
